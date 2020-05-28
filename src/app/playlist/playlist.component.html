@@ -1,0 +1,75 @@
+<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.css" rel="stylesheet"/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-4">
+      <h1 class="text-center">PlayLists</h1>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center"> Name</th>
+            <th class="text-center">Total Duration</th>
+            <th class="text-center">Total Songs</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Title</th>
+            <th class="text-center">Artist</th>
+            <th class="text-center">Duration</th>
+            <th class="text-center">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let playlist of playlists">
+            <td>{{ playlist.id }}</td>
+            <td>{{ playlist.name }}</td>
+            <td>{{ playlist.totalDuration }}</td>
+            <td>{{ playlist.totalSongs }}</td>
+            <td>{{ playlist.description }}</td>
+            <td>{{ playlist.title }}</td>
+            <td>{{ playlist.artist }}</td>
+            <td>{{ playlist.duration }}</td>
+
+            <td>
+              <button type="button" class="btn btn-info btn-sm mr-2" (click)="showEditPlaylistsForm(playlist)">Edit</button>
+
+              <button type="button" class="btn btn-danger btn-sm" (click)="removePlaylists(playlist)">Delete</button>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      <button class="btn btn-success" (click)="showAddPlaylistsForm()">Add New Playlists</button>
+
+      <div class="mt-4">
+        <form  *ngIf="playlistsForm">
+          <h2>Add New Playlist</h2>
+          <p> Name: <input type="text" name="Name"  [(ngModel)]="newPlaylists.name"  required/></p>
+          <p>Total Duration : <input type="text"  name="totalDuration" [(ngModel)]="newPlaylists.totalDuration" required /></p>
+          <p>Total Songs : <input type="text"  name="totalSongs" [(ngModel)]="newPlaylists.totalSongs" required /></p>
+          <p>Description : <input type="text" name="description"  [(ngModel)]="newPlaylists.description" required /></p>
+          <p>Title : <input type="text" name="description"  [(ngModel)]="newPlaylists.title" required  /></p>
+          <p>Artist : <input type="text" name="description" [(ngModel)]="newPlaylists.artist" required /></p>
+          <p>Duration : <input type="text" name="description" [(ngModel)]="newPlaylists.duration" required /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="savePlaylists(newPlaylists)">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelNewPlaylists()">Cancel</button>
+          </p>
+        </form>
+
+        <form *ngIf="editPlaylistsForm">
+          <h2>Edit Playlists Details</h2>
+          <p> Name: <input type="text" name="Name" [(ngModel)]="editedPlaylists.name" /></p>
+          <p>Total Duration : <input type="text" name="totalDuration" [(ngModel)]="editedPlaylists.totalDuration"  /></p>
+          <p>Total Songs : <input type="text" name="totalSongs" [(ngModel)]="editedPlaylists.totalSongs"  /></p>
+          <p>Description : <input type="text" name="description" [(ngModel)]="editedPlaylists.description"  /></p>
+          <p>Title : <input type="text" name="description" [(ngModel)]="newPlaylists.title"  /></p>
+          <p>Artist : <input type="text" name="description" [(ngModel)]="newPlaylists.artist"  /></p>
+          <p>Duration : <input type="text" name="description" [(ngModel)]="newPlaylists.duration"  /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="updatePlaylists()">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
